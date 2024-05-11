@@ -1,2 +1,10 @@
-package com.example.estatebookweb.models;public class BanTypeEnum {
+package com.example.estatebookweb.models;
+
+public enum BanTypeEnum {
+    Предупреждение,
+    Удаление_аватара_пользователя,
+    Блокировка_пользователя_на_неделю,
+    Блокировка_пользователя_на_месяц,
+    Блокировка_пользователя_навсегда,
+
 }

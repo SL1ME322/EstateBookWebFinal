@@ -1,2 +1,11 @@
-package com.example.estatebookweb.models;public class EstateComplaintEnum {
+package com.example.estatebookweb.models;
+
+public enum EstateComplaintEnum {
+    Несоответствие_описания_объекта_недвижимости_реальности,
+    Недостоверные_фотографии,
+    Использование_чужих_фотографий,
+    FRAUD_OR_DECEPTION,
+    Некорректные_условия_сделки,
+    Нежелательная_информация_или_контент,
+    Неприемлемое_поведение_продавца_или_агента
 }

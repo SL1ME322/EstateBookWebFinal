@@ -1,10 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset=UTF-8>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оставить отзыв</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d"
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+    <link rel=stylesheet th:href="@{/css/profile_estates.css}" href=../../static/css/profile_estates.css>
+    <link rel=stylesheet th:href="@{/css/styles.css}">
+    <link rel=stylesheet th:href="@{/css/fonts.css}">
+    <link rel=stylesheet th:href="@{/css/fonts.css}">
+    <link rel=preconnect href=https://fonts.googleapis.com>
+    <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+    <link rel="stylesheet" th:href="@{/css/splide.min.css}">
+    <link rel="stylesheet" href="fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css"
+          integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel=stylesheet>
+    <link href=https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css rel=stylesheet/>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js>
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
-<body>
-$END$
+
+<body class="bg-[#F9F9F9] ">
+<div class="header">
+    <div th:insert="~{html/header :: headerElem}"></div>
+</div>
+
+<span class="main_bg"></span>
+<div class="relative container flex flex-col   ">
+    <div class="flex   w-full h-full  justify-between">
+        <section
+                class="bg-[#9EED9D] w-[310px] h-[380px]  m-8 rounded-xl justify-center items-center justify-content-center">
+            <div class="  flex flex-col items-center mt-12   ">
+                <figure>
+                    <img src="/img/ыыы.jpg" alt="profile" class="w-64 h-64 rounded-full" width="250px" height="250px">
+                </figure>
+                <div class="userName text-center ">
+                    <h1 th:text="${reviewedUser.getLogin()}"  class="name text-4xl"></h1>
+                    <input id="userReviewed" type="hidden" th:value = "${reviewedUser.getId()}">
+                    <input id="userReviewing" type="hidden" th:value = "${currentUser.getId()  }">
+                    <div class="map font-semibold">
+                        <i class="ri-map-pin-fill ri"></i>
+                        <span>Москва</span>
+                    </div>
+                    <p class="text-sm role text-xl font-bold">Продавец</p>
+                </div>
+
+                <!-- <h1 class="heading">
+                    Рейтинг
+                </h1> -->
+
+                <dIV>Объявления:</dIV>
+                <div class="flex  text-blue-500 hover:text-blue-700 space-x-4">
+                    <a onclick="window.location.href='profile_estates.php'">112 активных <i class="ri-link "></i></a>
+                    <a onclick="window.location.href='profile_estates.php'">112 завершенных <i class="ri-link "></i></a>
+                    <div></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+        <section class="bg-[#C1EBC0] h-[500px] w-9/12 mr-12 relative">
+            <div>
+
+            </div>
+
+            <div class="rating">
+                <div class="p-4">
+                    <p class="text-gray-500 italic">Поставьте пользователю оценку...</p>
+                    <button class="star-button" onclick="setRating(1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="36" fill="rgba(255,238,0,1)">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+                        </svg>
+                    </button>
+                    <button class="star-button" onclick="setRating(2)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="36" fill="rgba(151,151,151,1)">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+                        </svg>
+                    </button>
+                    <button class="star-button" onclick="setRating(3)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="36" fill="rgba(151,151,151,1)">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+                        </svg>
+                    </button>
+                    <button class="star-button" onclick="setRating(4)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="36" fill="rgba(151,151,151,1)">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+                        </svg>
+                    </button>
+                    <button class="star-button" onclick="setRating(5)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="36" fill="rgba(151,151,151,1)">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+
+            </div>
+            <textarea placeholder="Напишите отзыв..." id="conclusion"
+                      class="text-2xl h-2/3 w-full px-4 py-2 border border-gray-300 rounded-md mb-4 resize-none"></textarea>
+            <button class="absolute bottom-0 left-0 mb-4 flex items-center space-x-3 bg-[#f0942b] p-4 rounded-lg shadow-md transition duration-300 hover:bg-[#ffa94d] hover:text-white hover:shadow-lg">
+                <span>К профилю</span>
+            </button>
+            <button onclick="sendReview()"  class="absolute bottom-0 right-0 mb-4 flex items-center space-x-3 bg-[#e2f233] p-4 rounded-lg shadow-md transition duration-300 hover:bg-[#c8e62e] hover:text-white hover:shadow-lg">
+                <span>Отправить отзыв</span>
+            </button>
+
+        </section>
+
+
+    </div>
+
+
+</div>
+<script>
+    // Глобальная переменная для хранения рейтинга
+    var rating = 1;
+    var userReviewedId = document.querySelector('input[id="userReviewed"]').value;
+    var userReviewingId = document.querySelector('input[id="userReviewing"]').value;
+    function sendReview(va) {
+        var conclusion = document.getElementById("conclusion").value; // Получаем текст отзыва
+
+        // Создаем объект с данными отзыва
+
+        console.log(conclusion);
+        console.log(rating);
+        console.log(userReviewedId);
+        console.log(userReviewingId);
+        // Отправляем POST-запрос на сервер с использованием AJAX
+        $.ajax({
+            type: "POST",
+            url: "/review/createReview",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "review_text": conclusion,
+                "stars": rating,
+                 userReviewed : {
+                    "id": userReviewedId
+                },
+                userReviewing : {
+                    "id": userReviewingId
+                }
+            }),
+            timeout: 1000,
+            success: function(response) {
+                console.log("Отзыв успешно отправлен");
+                // Здесь можем добавить код для отображения сообщения об успешной отправке
+            },
+            error: function(xhr, status, error) {
+
+                console.error("Ошибка при отправке отзыва:", error);
+            }
+        });
+    }
+
+    function setRating(selectedRating) {
+        rating = selectedRating;
+        const stars = document.querySelectorAll('.rating button svg');
+        stars.forEach((star, index) => {
+            if (index < selectedRating) {
+                star.style.fill = "rgba(255,238,0,1)"; // Заполненная звезда
+            } else {
+                star.style.fill = "rgba(151,151,151,1)"; // Незаполненная звезда
+            }
+        });
+    }
+</script>
+
 </body>
+
 </html>

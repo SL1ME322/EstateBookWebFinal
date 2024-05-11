@@ -31,6 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         UserDetails userDetails = User.builder()
                 .username(user.getLogin())
                 .password(user.getPassword())
+
                 .roles(user.getRoles().stream().map(Enum::name).toArray(String[]::new))
                 .build();
         return userDetails;

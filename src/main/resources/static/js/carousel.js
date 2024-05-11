@@ -48,13 +48,8 @@ const photoCount = photoList.querySelectorAll('.splide__slide').length;
 photoCountElement.textContent =  photoCount.toString();
 
 
-const photoList2 = document.getElementById('photo-list2');
-const photoCountElement2 = document.getElementById('photo-count2');
-const photoCount2 = photoList2.querySelectorAll('.splide__slide').length;
 
-photoCountElement2.textContent =  photoCount2.toString();
 
-  
  // Initialize and add the map
 let map;
 

@@ -1,2 +1,11 @@
-package com.example.estatebookweb.repositories;public interface ChatRoomRepository {
+package com.example.estatebookweb.repositories;
+
+import com.example.estatebookweb.chat.chatRoom.ChatRoom;
+import com.example.estatebookweb.models.EstateModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
+    Optional<ChatRoom> findBySenderIdAndRecipientId(String senderId, String recipientId);
 }

@@ -2,56 +2,49 @@ package com.example.estatebookweb.controllers;
 
 
 
+import com.example.estatebookweb.models.ComplaintModel;
 import com.example.estatebookweb.models.EstateModel;
 import com.example.estatebookweb.models.UserModel;
+import com.example.estatebookweb.repositories.ComplaintRepository;
 import com.example.estatebookweb.repositories.EstateRepository;
+import com.example.estatebookweb.repositories.UserRepository;
 import com.example.estatebookweb.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Controller
-public class ModeratorController {
+@RequestMapping("/moderator")
+public class ModeratorController   {
+    private final EstateRepository estateRepository;
 
-
-    @GetMapping("/html")
+    private final UserService userService;
+    private final UserRepository userRepository;
+    private final ComplaintRepository complaintRepository;
+    @GetMapping("/moderPage")
     public String getHome(Model model) {
         List<EstateModel> estates = estateRepository.findAll();
         model.addAttribute("estates", estates);
 
-        return "html/mainPage";
-    }
-    @GetMapping("/chat_test")
-    public String getChatTest() {
-
-
-        return "html/chat_test";
-    }
-    public ModeratorController( ) {
-
+        return "html/moderatorMainPage";
     }
 
-    @GetMapping("/profile")
-    public String getProfile(Model model) {
-        UserModel currentUser = userService.getCurrentUserLogin();
-        if (currentUser != null) {
-            model.addAttribute("currentUser", currentUser);
-            return "html/profile_page";
-        } else {
-            return "redirect:/login";
-        }
+    public ModeratorController(EstateRepository estateRepository, UserService userService, UserRepository userRepository, ComplaintRepository complaintRepository) {
+        this.estateRepository = estateRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
+        this.complaintRepository = complaintRepository;
     }
 
-    @GetMapping("/addEstate")
-    public String addEstate() {
-        return "html/addEstate";
-    }
+
+
+
     @GetMapping("/editEstate/{id}")
     public String editEstate(@PathVariable Long id, Model model, Map<String, Object> estateMap) {
         Optional<EstateModel> estate = estateRepository.findEstateModelById(id);
@@ -59,18 +52,15 @@ public class ModeratorController {
         estateMap.put("estate", estate);
         return "html/editEstate";
     }
-    @GetMapping("/chat")
-    public String chat() {
-        return "html/chat";
-    }
 
-    @GetMapping("/estatePage/{id}")
-    public String estatePage(@PathVariable Long id, Model model) {
+
+    @GetMapping("/moderEstatePage/{id}")
+    public String moderEstatePage(@PathVariable Long id, Model model) {
         Optional<EstateModel> estateModel = estateRepository.findEstateModelById(id);
         if (estateModel.isPresent()) {
             EstateModel estate = estateModel.get();
             model.addAttribute("estate", estate);
-            return "html/estatePage";
+            return "html/moderEstatePage";
         } else {
             return "redirect:/";
         }
@@ -81,6 +71,8 @@ public class ModeratorController {
     public String profileEstates(Model model) {
         UserModel currentUser = userService.getCurrentUserLogin();
         if (currentUser != null) {
+            Long id = currentUser.getId();
+
             model.addAttribute("currentUser", currentUser);
             return "html/profile_estates";
         } else {
@@ -88,8 +80,37 @@ public class ModeratorController {
         }
     }
 
-    @GetMapping("/reviewsPage")
-    public String reviews_page(Model model) {
+//    @GetMapping("/reviewsPage")
+//    public String reviews_page(Model model) {
+//        UserModel currentUser = userService.getCurrentUserLogin();
+//        if (currentUser != null) {
+//            model.addAttribute("currentUser", currentUser);
+//            return "html/reviews_page";
+//        } else {
+//            return "redirect:/login";
+//        }
+//    }
+    @GetMapping("/userComplaint/{id}")
+    public String userComplaint(@PathVariable Long id, Model model) {
+        UserModel currentUser = userService.getCurrentUserLogin();
+
+        model.addAttribute("currentUser", currentUser);
+        Optional<ComplaintModel> complaintModel = complaintRepository.findById(id);
+        if (complaintModel.isPresent()) {
+            ComplaintModel complaint  = complaintModel.get();
+            UserModel sender = complaint.getSender();
+            UserModel recipient = complaint.getSender();
+            model.addAttribute("complaint", complaint);
+            model.addAttribute("senderUser", sender);
+            model.addAttribute("recipientUser", recipient);
+            return "html/userComplaint";
+        } else {
+            return "redirect:/";
+        }
+
+    }
+    @GetMapping("/getAllComplaints")
+    public String getAllComplaints(Model model) {
         UserModel currentUser = userService.getCurrentUserLogin();
         if (currentUser != null) {
             model.addAttribute("currentUser", currentUser);
@@ -97,6 +118,22 @@ public class ModeratorController {
         } else {
             return "redirect:/login";
         }
+
+    }
+
+    @RequestMapping("/updateComplaint/{id}")
+    public ResponseEntity<String> updateComplaint(@PathVariable Long id, @RequestBody ComplaintModel complaintModel) {
+        UserModel currentUser = userService.getCurrentUserLogin();
+        Optional<ComplaintModel> existingComplaintOptional = complaintRepository.findById(id);
+        if (existingComplaintOptional.isPresent()){
+            ComplaintModel existingComplaint = existingComplaintOptional.get();
+            existingComplaint.setModerator(currentUser);
+            existingComplaint.setConclusion(complaintModel.getConclusion());
+            existingComplaint.setBanType(complaintModel.getBanType());
+            complaintRepository.save(existingComplaint);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body("Estate created successfully");
 
     }
 }

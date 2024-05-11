@@ -1,10 +1,224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset=UTF-8>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: "#da373d"
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+    <link rel=stylesheet th:href="@{/css/profile_estates.css}" href=../../static/css/profile_estates.css>
+    <link rel=stylesheet th:href="@{/css/styles.css}">
+    <link rel=stylesheet th:href="@{/css/fonts.css}">
+    <link rel=stylesheet th:href="@{/css/fonts.css}">
+    <link rel=preconnect href=https://fonts.googleapis.com>
+    <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+    <link rel="stylesheet" th:href="@{/css/splide.min.css}">
+    <link rel="stylesheet" href="fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css"
+          integrity="sha512-dUOcWaHA4sUKJgO7lxAQ0ugZiWjiDraYNeNJeRKGOIpEq4vroj1DpKcS3jP0K4Js4v6bXk31AAxAxaYt3Oi9xw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel=stylesheet>
+    <link href=https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css rel=stylesheet/>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js>
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
-$END$
+
+<body class="bg-[#F9F9F9] ">
+<div class="header">
+    <div th:insert="~{html/moderHeader.html :: moderHeaderElem}"></div>
+</div>
+
+<span class="main_bg"></span>
+<div class="relative container flex flex-col   ">
+    <div class="flex   w-full h-full  justify-between">
+        <section
+                class="bg-[#9EED9D] w-[310px] h-[380px]  m-8 rounded-xl justify-center items-center justify-content-center">
+            <div class="  flex flex-col items-center mt-12   ">
+                <figure>
+                    <img src="/img/ыыы.jpg" alt="profile" class="w-64 h-64 rounded-full" width="250px" height="250px">
+                </figure>
+                <div class="userName text-center ">
+                    <h1 th:text="${senderUser.getName()}" class="name text-4xl"></h1>
+                    <div class="map font-semibold">
+                        <i class="ri-map-pin-fill ri"></i>
+                        <span>Москва</span>
+                    </div>
+                    <p class="text-sm role text-xl font-bold">Продавец</p>
+                </div>
+
+                <!-- <h1 class="heading">
+                    Рейтинг
+                </h1> -->
+
+                <dIV>Объявления:</dIV>
+                <div class="flex  text-blue-500 hover:text-blue-700 space-x-4">
+                    <a onclick="window.location.href='profile_estates.php'">112 активных <i class="ri-link "></i></a>
+                    <a onclick="window.location.href='profile_estates.php'">112 завершенных <i class="ri-link "></i></a>
+                    <div></div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+        <section class="bg-[#C1EBC0] h-[500px] w-6/12">
+            <div class="text-center">
+                <p class="text-xl font-bold break-all" th:text="${complaint.getType()}"></p>
+                <p class="text-2xl px-8 font-semibold break-all"></p>
+
+            </div>
+        </section>
+
+        <section
+                class="bg-[#9EED9D] w-[310px] h-[380px]  m-8 rounded-xl justify-center items-center justify-content-center">
+            <div class="  flex flex-col items-center mt-12   ">
+                <figure>
+                    <img src="/img/ыыы.jpg" alt="profile" class="w-64 h-64 rounded-full" width="250px" height="250px">
+                </figure>
+                <div class="userName text-center ">
+                    <h1 th:text="${recipientUser.getName()}" class="name text-4xl"></h1>
+                    <div class="map font-semibold">
+                        <i class="ri-map-pin-fill ri"></i>
+                        <span>Москва</span>
+                    </div>
+                    <p class="text-sm role text-xl font-bold">Продавец</p>
+                </div>
+
+                <!-- <h1 class="heading">
+                    Рейтинг
+                </h1> -->
+
+                <dIV>Объявления:</dIV>
+                <div class="flex  text-blue-500 hover:text-blue-700 space-x-4">
+                    <a onclick="window.location.href='profile_estates.php'">112 активных <i class="ri-link "></i></a>
+                    <a onclick="window.location.href='profile_estates.php'">112 завершенных <i class="ri-link "></i></a>
+                    <div></div>
+
+
+                </div>
+            </div>
+
+
+            <!-- Контент первой секции -->
+        </section>
+    </div>
+    <div>
+
+        <button class="ml-24 mb-6 absolute inset-x-0 bottom-0 bg-[#f56358] h-32 w-1/6 rounded-2xl">Удалить жалобу
+        </button>
+
+
+        <button id="reviewComplaint" class=" mr-24 mb-6 absolute bottom-0 right-0 bg-[#78f584] h-32 w-1/6 rounded-2xl">
+            Рассмотреть жалобу
+        </button>
+
+    </div>
+
+
+</div>
+<dialog id="modal"
+        class="    fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/6 h-4/6   flex-col items-center justify-center bg-[#d1ffd1] rounded-lg p-8">
+    <p class="text-2xl font-bold mb-4">Выбор санкции:</p>
+    <select id="banTypeSelect" class="w-full px-4 py-2 text-2xl border border-gray-300 rounded-md mb-4">
+        <option value="Предупреждение">Вынести предупреждение</option>
+        <option value="Удаление аватара пользователя">Удаление аватара пользователя</option>
+        <option value="Блокировка пользователя на неделю">Блокировка пользователя на неделю</option>
+        <option value="Блокировка пользователя на месяц">Блокировка пользователя на месяц</option>
+        <option value="Блокировка пользователя навсегда">Блокировка пользователя навсегда</option>
+
+    </select>
+    <input class="hidden" id="moderatorId" th:value="${currentUser.getId()}">
+    <textarea placeholder="Заключение по рассмотренной жалобе..." id="conclusion"
+              class="text-2xl h-2/3 w-full px-4 py-2 border border-gray-300 rounded-md mb-4"></textarea>
+    <div class="flex w-full justify-between">
+        <button id="closeReviewComplaint"
+                class="  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Закрыть
+        </button>
+        <button onclick="updateComplaint()" id="sendModerResult"
+                class="  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Отправить
+        </button>
+    </div>
+
+</dialog>
+
+<script>
+    var conclusionVar = null;
+    var moderatorId = null;
+    var urlParts = window.location.pathname.split('/');
+
+    var complaintId = urlParts[urlParts.length - 1];
+
+    console.log(complaintId);
+    const modal = document.getElementById('modal');
+    const sendModerResult = document.getElementById('sendModerResult');
+    const openModal = document.getElementById('reviewComplaint');
+    const closeModal = document.getElementById('closeReviewComplaint');
+    const banTypeSelect = document.getElementById('banTypeSelect');
+    const selectedBanType = banTypeSelect.value;
+        openModal.addEventListener('click', () => {
+        if (!modal.open) {
+            modal.showModal();
+        }
+    });
+    closeModal.addEventListener('click', () => {
+        modal.close();
+    })
+
+
+    function updateComplaint(va) {
+        conclusionVar = document.querySelector('#conclusion').value;
+        moderatorId = document.querySelector('#moderatorId').value;
+        console.log(moderatorId );
+        console.log(conclusionVar);
+        var complaintData = {
+            conclusion: conclusionVar,
+            moderator_id: moderatorId,
+            banType: [selectedBanType]
+        };
+
+
+        $.ajax({
+            type: "PUT",
+            url: "/moderator/updateComplaint/" + complaintId.toString(),
+            contentType: "application/json",
+            data: JSON.stringify(complaintData),
+            timeout: 1000,
+            success: function (response) {
+                console.log("Жалоба успешно обновлена:", response);
+            },
+            error: function (xhr, status, error) {
+                console.error("Ошибка при изменении жалобы:", error, status, xhr.responseText);
+            }
+        });
+    }
+
+
+
+
+</script>
+
 </body>
+
 </html>

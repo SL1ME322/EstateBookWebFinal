@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel=stylesheet>
+<div th:fragment="moderHeaderElem" class="flex flex-col justify-between bg-[#9FCC39] px-16  ">
+    <div class="flex items-center justify-between ">
+        <header class="mb-4">
+            <a th:href="@{/moderator/moderPage}   ">
+                <button      class="flex flex-row items-center">
+                    <img src=/img/appIcon.png class="w-25 h-20 mr-2" >
+                    <div class="flex-col  ">
+                        <h1 class="text-2xl poppins-semibold  mb-[-6px]">
+                            EstateBook
+                        </h1>
+                        <h4 class="  poppins-semibold">
+                            Панель модератора
+                        </h4>
+                    </div>
+
+                </button>
+            </a>
+        </header>
+        <nav class="m-4">
+            <ul class=flex>
+
+                <li class="mx-2">
+                    <button type="button" onclick="openAuthorization()" class="poppins-semibold rounded-lg px-2 py-2 border border-black">Профиль</button>
+                </li>
+
+            </ul>
+
+        </nav>
+    </div>
+
+    <!--<nav class="mb-3 mt-3 w-28 poppins-medium flex items-center justify-center">
+        <img src=img/gpsicon3.png class="w-3 h-5 mr-1 rounded-md">
+        <p>
+          Москва
+        </p>
+      </nav>-->
+</div>

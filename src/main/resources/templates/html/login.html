@@ -1,38 +1,212 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Вход</title>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.js"-->
+<!--            integrity="sha512-93u7u+f+oUbInjU1GhC3JaJgykNSkL7Wiu4RE9lrVQIRfVi+1xBXtRTUfymoehDtD7DDhmkgZgbkfYlmCq8ydQ=="-->
+<!--            crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+<!--</head>-->
+<!--<body class="bg-light">-->
+<!--<div class="container mt-5">-->
+<!--    <div class="row justify-content-center">-->
+<!--        <div class="col-md-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h1 class="card-title">Вход</h1>-->
+<!--                    <p th:if="${param.error}" class="text-danger">Ошибка логина</p>-->
+<!--                    <p th:if="${session.bannedMessage}" class="text-danger" th:text="${session.bannedMessage}"> </p>-->
+<!--                    <form th:action="@{/login}" method="post">-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="email">Адрес эл. почты</label>-->
+<!--                            <input type="text" id="email" name="username" autofocus="autofocus" class="form-control" />-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <label for="password">Пароль</label>-->
+<!--                            <input type="password" id="password" name="password" class="form-control" />-->
+<!--                        </div>-->
+<!--                        <button type="submit" class="btn btn-primary">Войти</button>-->
+<!--                    </form>-->
+<!--                    <p class="mt-3">Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.js"
-            integrity="sha512-93u7u+f+oUbInjU1GhC3JaJgykNSkL7Wiu4RE9lrVQIRfVi+1xBXtRTUfymoehDtD7DDhmkgZgbkfYlmCq8ydQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Регистрация</title>
+    <!-- Tailwind CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for geometric shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            background-color: #6EE7B7;
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 130px solid #6EE7B7;
+            top: 200px;
+            right: -50px;
+        }
+
+        .square {
+            width: 150px;
+            height: 150px;
+            background-color: #6EE7B7;
+            top: 400px;
+            left: 60%;
+            transform: translateX(-50%);
+        }
+
+    </style>
 </head>
-<body class="bg-light">
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">Login</h1>
-                    <p th:if="${param.error}" class="text-danger">Login failed</p>
-                    <form th:action="@{/login}" method="post">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="username" autofocus="autofocus" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" class="form-control" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                    </form>
-                    <p class="mt-3">Don't have an account? <a href="/register">Sign Up</a></p>
+
+<body class="bg-green-50 relative">
+<!-- Geometric shapes -->
+<div class="shape circle"></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Регистрация</title>
+    <!-- Tailwind CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for geometric shapes */
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            background-color: #6EE7B7;
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 130px solid #6EE7B7;
+            top: 200px;
+            right: 10px;
+        }
+        .triangle2 {
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 130px solid #6EE7B7;
+            top: 310px;
+            left: 170px;
+        }
+        .square {
+            width: 150px;
+            height: 150px;
+            background-color: #6EE7B7;
+            top: 430px;
+            left: 60%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body class="bg-green-50 relative">
+<!-- Geometric shapes -->
+<div class="shape circle"></div>
+<div class="shape triangle"></div>
+<div class="shape triangle2"></div>
+<div class="shape square"></div>
+
+<div class="container mx-auto mt-20  ">
+    <div class="max-w-lg mx-auto bg-white rounded-md overflow-hidden shadow-md">
+        <div class="p-8">
+            <h1 class="text-3xl text-center font-semibold text-green-600 mb-6">Вход</h1>
+            <p th:if="${param.error}" class="text-red-500">Ошибка логина</p>
+            <p th:if="${session.bannedMessage}" class="text-red-500" th:text="${session.bannedMessage}"> </p>
+            <!--<p th:if="${param.error}" class="error text-danger">Registration failed</p>-->
+            <form th:action="@{/login}" method="post">
+                <div class="mt-6">
+                    <label for="email" class="block text-lg font-medium text-gray-700">Адрес эл. почты</label>
+                    <input type="text" id="email" name="username" autofocus="autofocus"   class="mt-1 pl-2 focus:ring-green-500 focus:border-green-500 block w-full h-8 shadow-sm sm:text-sm border-gray-300 rounded-md">
                 </div>
-            </div>
+                <div class="mt-6">
+                    <label for="password" class="block text-lg font-medium text-gray-700">Пароль</label>
+                    <input type="password" id="password" name="password" class="pl-2 mt-1 focus:ring-green-500 focus:border-green-500 block w-full h-8 shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                <!-- CSRF token -->
+                <input type="hidden" name="_csrf" value="your_csrf_token_here">
+
+                <div class="mt-8">
+                    <button type="submit" class="w-full flex justify-center py-3 px-6 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Войти
+                    </button>
+                </div>
+            </form>
+
+            <p class="mt-4 text-center text-lg text-gray-600">Нет аккаунта?  <a href="/register" class="font-medium text-green-600 hover:text-green-500">Войти</a></p>
         </div>
     </div>
 </div>
 
 </body>
+
 </html>

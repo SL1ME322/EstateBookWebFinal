@@ -40,7 +40,7 @@
 <body class="bg-[#F9F9F9]">
 <script src="three.min.js" ></script>
 
-<header th:insert="~{html/header.html :: headerElem}">
+<header th:insert="~{html/moderHeader.html :: moderHeaderElem}">
 
 </header>
 <div>
@@ -66,7 +66,7 @@
                         <div class="flex  w-full ">
 
                             <div class="w-full h-full mr-3">
-                                <section id="main-carousel" class="splide w-full">
+                                <section id="moder-carousel" class="splide w-full">
                                     <div class="splide__track w-full h-full mx-auto items-center justify-center">
                                         <div class="splide__arrows"></div>
                                         <ul class="splide__list">
@@ -176,7 +176,7 @@
 
 <script th:src="@{/js/universalScript.js}"></script>
 <script>
-    var splide = new Splide('#main-carousel', {
+    var splide = new Splide('#moder-carousel', {
         pagination: false,
         rewind: true,
         //autoplay: true,

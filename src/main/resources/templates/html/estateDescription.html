@@ -1,4 +1,4 @@
-<div th:fragment="estateDescription(estate)" class="bg-white border-2 w-full h-[35.4rem]">
+<div th:fragment="estateDescription(estate)" class="bg-white border-2 w-full h-[38.4rem]">
     <div class="w-full poppins-medium flex flex-col p-4 h-full  ">
         <div class="px-2">
             <div class="flex justify-between   ">
@@ -136,10 +136,15 @@
 
 
         <hr class="mt-auto mb-4 border-t-2 border-gray-300">
-        <div class="  flex-col bg-gray ">
+
+        <div class="  flex-col bg-gray "      >
+
             <div class="flex flex-row items-center  ">
                 <div class="relative cursor-pointer ">
-                    <img class="w-32 h-32 rounded-full" th:src="@{/img/ыыы.jpg}">
+                    <a   th:href ="@{/profile/{id}(id=${user.getId()})}" >
+                        <img class="w-32 h-32 rounded-full" th:src="@{/img/ыыы.jpg}">
+                    </a>
+
                     <div class="w-12 h-6 rounded-full bg-yellow-100 flex flex-row absolute bottom-0   right-0">
                         <img th:src="@{/img/star.png}" class="h-7/12 w-1/2  ">
                         <p>
@@ -154,10 +159,18 @@
                      hover:text-sky-700 cursor-pointer text-2xl" >
 
                     </p>
+                    <div class="items-center flex">
+                        <p id="username" th:text="${user.getLogin()}" class="inline-block mx-auto text-center">+7987...</p>
+                    </div>
+
                     <div class="flex flex-row items-center">
+
                         <div class="mr-4 flex flex-row">
-                            <img class="h-6 w-4 ml-1" th:src="@{/img/phone.png}">
+
+                            <img class="h-5 w-4 ml-1" th:src="@{/img/phone.png}">
+
                             <p id="phoneNumber" class="inline-block">+7987... </p>
+
                             <button onclick="showFullNumber()" id="showButton">
                                 <a class="hover:text-sky-700">Показать</a>
 

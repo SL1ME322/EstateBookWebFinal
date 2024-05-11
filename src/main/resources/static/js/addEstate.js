@@ -10,6 +10,104 @@
 //     button.classList.add('bg-blue-300');
 //     console.log(input.value);
 // }
+const modelContents = [];
+function showSelectedModels(event) {
+    const modelList = document.getElementById('modelList');
+    const maxModels = 15;
+    const files = event.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+        if (modelList.childElementCount >= maxModels) {
+            alert(`Вы не можете добавить больше ${maxModels} моделей`);
+            break;
+        }
+
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            // Сохраняем содержимое файла в другую переменную
+            const modelContent = e.target.result;
+
+            // Создаем элемент для отображения названия файла
+            const fileNameElement = document.createElement('div');
+            fileNameElement.classList.add('text-center');
+            fileNameElement.innerText = file.name;
+
+            // Создаем кнопку для удаления
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '&times;';
+            deleteButton.classList.add('absolute', 'top-0', 'right-0', 'text-red-500', 'p-1');
+            deleteButton.addEventListener('click', function() {
+                thumbnail.remove();
+            });
+
+            // Создаем обертку для элемента с названием и кнопкой удаления
+            const thumbnail = document.createElement('div');
+            thumbnail.classList.add('text-center');
+            thumbnail.appendChild(fileNameElement);
+            thumbnail.appendChild(deleteButton);
+
+            // Добавляем созданный элемент на страницу
+            modelList.appendChild(thumbnail);
+
+            // Добавляем содержимое файла в массив моделей
+            modelContents.push(modelContent);
+        };
+
+        // Читаем содержимое файла как текст
+        reader.readAsText(file);
+    }
+}
+
+function showSelectedFiles(event){
+    const fileList = document.getElementById('fileList');
+    const maxFiles = 15;
+    const files = event.target.files;
+    for (let i = 0; i < files.length; i++){
+        if (fileList.childElementCount >= maxFiles){
+            alert(`Вы не можете добавить больше ${maxFiles} файлов`);
+            break;
+        }
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = function(e){
+            const thumbnail = document.createElement('div');
+            thumbnail.classList.add('text-center');
+            let element;
+            if (file.type.includes('image')){
+                element = document.createElement('img');
+                element.src = e.target.result;
+
+            }
+            else if (file.type.includes('video')){
+                element = document.createElement('video');
+                element.src = e.target.result;
+                element.controls = true;
+            }
+
+            const deleteButton = document.createElement('button');
+            deleteButton.innerHTML =  '&times;';
+            deleteButton.classList.add('absolute', 'top-0','right-0','text-red-500','p-1');
+            deleteButton.addEventListener('click', function () {
+                thumbnail.remove();
+                }
+            )
+            thumbnail.appendChild(element);
+            thumbnail.appendChild(deleteButton);
+            fileList.appendChild(thumbnail);
+
+        };
+        reader.readAsDataURL(file)
+    }
+}
+
+document.getElementById('fileInput').addEventListener('change', showSelectedFiles);
+
+
+
+
+document.getElementById('modelInput').addEventListener('change', showSelectedModels);
 
 var inputs ={
       estate_input: document.getElementById("estate_name_input"),
@@ -138,6 +236,44 @@ function selectOptions(option, button) {
 }
 
 function addEstate(va){
+    var fileList = document.getElementById('fileList');
+    var thumbnails = fileList.querySelectorAll('div.text-center');
+    var filePaths = [];
+
+
+    var modelURLs = [];
+
+    var modelInput = document.getElementById('modelInput');
+    var modelList = document.getElementById('modelList');
+    var modelThumbnails = modelList.querySelectorAll('div.text-center');
+    console.log(modelThumbnails);
+    modelInput.addEventListener('change', function(event) {
+        var files = event.target.files; // Получаем выбранные пользователем файлы
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (file.type === 'model/gltf+json' || file.type === 'model/gltf-binary' || file.name.endsWith('.glb') || file.name.endsWith('.gltf')) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    // Добавляем содержимое файла в массив моделей
+                    modelURLs.push(event.target.result);
+                };
+                // Читаем содержимое файла как Data URL
+                reader.readAsDataURL(file);
+                console.log( file )
+            }
+        }
+    });
+    // Прох одимся по каждому элементу списка файлов и извлекаем путь к файлу
+    thumbnails.forEach(function(thumbnail) {
+        var image = thumbnail.querySelector('img');
+        var video = thumbnail.querySelector('video');
+
+        if (image) {
+            filePaths.push(image.src);
+        } else if (video) {
+            filePaths.push(video.src);
+        }
+    });
     var estateData = {
         adName: inputs.estate_input.value,
         location:  globalAddress ,
@@ -164,17 +300,23 @@ function addEstate(va){
         address: "Адрес недвижимости",
         floorAmount: inputs.floor_amount_input.value, // Количество этажей
         floor: inputs.floor_input.value, // Этаж
-        entrance: vars.entrance // Подъезд
+        entrance: vars.entrance,
+        city: city,
+        files: filePaths,
+        threeDModel: modelContents
     };
+
+    console.log(modelContents)
+
 console.log(JSON.stringify(estateData))
     $.ajax({
         type: "POST",
         url: "/estates/createEstate",
         contentType: "application/json",
         data: JSON.stringify(estateData),
-        timeout: 1000,
-        success: function (response) {
-            console.log("Недвижимость успешно добавлена:", response);
+        timeout: 90000,
+        success: function(result) {
+            //location.href = "/html"
         },
         error: function (xhr, status, error) {
             console.error("Ошибка при добавлении недвижимости:", error, status, xhr.responseText);
