@@ -1,9 +1,9 @@
-<div th:fragment="estateDescription(estate)" class="bg-white border-2 w-full h-[38.4rem]">
+<div th:fragment="estateDescription(estate, user)" class="bg-white border-2 w-full h-[38.4rem]">
     <div class="w-full poppins-medium flex flex-col p-4 h-full  ">
         <div class="px-2">
             <div class="flex justify-between   ">
-                <p class="font-bold text-[1.6rem]" th:text="${estate.getAdName()}"></p>
-                <p class="text-yellow-400 font-bold  text-[1.6rem]" th:text="${estate.getPrice() + '₽'}"> </p>
+                <p class="font-bold text-[1.6rem]" th:text="${estate.adName}"></p>
+                <p class="text-yellow-400 font-bold  text-[1.6rem]" th:text="${estate.price + '₽'}"> </p>
             </div>
             <div class="flex items-center space-x-0.5 justify-between mb-3   ">
                 <div>
@@ -22,7 +22,7 @@
             <div class="flex items-center space-x-0.5 justify-between    ">
                 <div class="flex items-center  flex-row flex-1 flex after:content-['']  after:flex-1 after:block  after:w-full   after:border-b-4 after:mt-2  after:mx-2 after:border-dotted after:border-b">
                     <img   th:src="@{/img/metro.png}"  class="h-4 w-6 mr-1 relative rounded-t-lg" alt="q">
-                    <p th:text="${estate.getMetroStation()}">Нахимовский проспект</p>
+                    <p th:text="${estate.MetroStation}">Нахимовский проспект</p>
                 </div>
 
                 <div class=" flex flex-row ">
@@ -125,7 +125,7 @@
                     <div class="mx-auto flex space-x-2">
 
 
-                            <a th:href ="@{/editEstate/{id}(id=${estate.id})}" >
+                        <a th:href="@{/editEstate/{id}(id=${estate.id})}">
                             Изменить объявление
                         </a>
                     </div>
@@ -141,14 +141,14 @@
 
             <div class="flex flex-row items-center  ">
                 <div class="relative cursor-pointer ">
-                    <a   th:href ="@{/profile/{id}(id=${user.getId()})}" >
+                    <a th:href="@{/profile/{id}(id=${user.get().id})}">
                         <img class="w-32 h-32 rounded-full" th:src="@{/img/ыыы.jpg}">
                     </a>
 
                     <div class="w-12 h-6 rounded-full bg-yellow-100 flex flex-row absolute bottom-0   right-0">
                         <img th:src="@{/img/star.png}" class="h-7/12 w-1/2  ">
-                        <p>
-                            5.0
+                        <p th:text ="${user.get().averageMark}">
+
                         </p>
                     </div>
                 </div>
@@ -159,9 +159,9 @@
                      hover:text-sky-700 cursor-pointer text-2xl" >
 
                     </p>
-                    <div class="items-center flex">
-                        <p id="username" th:text="${user.getLogin()}" class="inline-block mx-auto text-center">+7987...</p>
-                    </div>
+<!--                    <div class="items-center flex">-->
+<!--                        <p id="username" th:text="${user.login}" class="inline-block mx-auto text-center">+7987...</p>-->
+<!--                    </div>-->
 
                     <div class="flex flex-row items-center">
 

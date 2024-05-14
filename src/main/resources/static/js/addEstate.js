@@ -305,8 +305,8 @@ function addEstate(va){
         files: filePaths,
         threeDModel: modelContents
     };
+    console.log(JSON.stringify(estateData))
 
-    console.log(modelContents)
 
 console.log(JSON.stringify(estateData))
     $.ajax({

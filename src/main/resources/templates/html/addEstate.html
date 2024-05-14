@@ -252,10 +252,11 @@
                 </div>
 
             </div>
-            <div class="flex items-center justify-center mt-8">
+            <div class="flex flex-col  mt-8">
+                <label for="fileInput" class="mb-2">Добавьте изображения</label>
                 <label for="fileInput" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                    <span>Добавить</span>
-                    <input id="fileInput" name="fileInput" type="file" class="sr-only" accept="image/*,video/*" multiple>
+                    <span>Выберите файлы</span>
+                    <input   id="fileInput" name="fileInput" type="file" class="w-20 sr-only" accept="image/*,video/*" multiple>
                 </label>
             </div>
             <div id="fileList" class="mt-4 grid grid-cols-3 gap-4"></div>

@@ -94,7 +94,8 @@ public class mainController {
     @GetMapping("/estatePage/{id}")
     public String estatePage(@PathVariable Long id, Model model) {
         Optional<EstateModel> estateModel = estateRepository.findEstateModelById(id);
-        UserModel user = estateModel.get().getUser();
+        Long userId = estateModel.get().getUser().getId();
+        Optional<UserModel> user = userRepository.findById(userId);
 
         if (estateModel.isPresent()) {
             EstateModel estate = estateModel.get();

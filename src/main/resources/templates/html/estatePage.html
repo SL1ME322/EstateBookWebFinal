@@ -114,9 +114,9 @@
 
                 </div>
             </div>
-<!--            <div class="w-4/12"    >-->
-<!--                <div th:with="estate=${estate}" th:replace="~{html/estateDescription.html :: estateDescription(${estate})}"></div>-->
-<!--            </div>-->
+            <div class="w-4/12"    >
+                <div th:with="estate=${estate}, user=${user}" th:replace="~{html/estateDescription.html :: estateDescription(${estate}, ${user})}"></div>
+            </div>
         </div>
         <div class="items-center mt-8 p-6 w-full bg-slate-100 space-y-4   ">
             <div class="items-center justify-center ">

@@ -31,7 +31,8 @@ public class ModeratorController   {
     public String getHome(Model model) {
         List<EstateModel> estates = estateRepository.findAll();
         model.addAttribute("estates", estates);
-
+        List<ComplaintModel> complaints = complaintRepository.findAll();
+        model.addAttribute("complaints", complaints);
         return "html/moderatorMainPage";
     }
 

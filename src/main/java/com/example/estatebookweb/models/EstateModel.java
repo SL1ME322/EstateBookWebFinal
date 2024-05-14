@@ -84,7 +84,7 @@ public class EstateModel {
     @Column(name = "Estate_Type")
     private String estateType;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "User_ID")
     private UserModel user;
@@ -123,6 +123,8 @@ public class EstateModel {
     @Column(name = "file_content", columnDefinition = "TEXT")
     private Set<String> files;
 
+
+    @JsonIgnore
     @ElementCollection
     @CollectionTable(name ="Estate_Files", joinColumns =@JoinColumn(name = "estate_id"))
     @Column(name = "threeDModel", columnDefinition = "TEXT")
