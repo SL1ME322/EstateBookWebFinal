@@ -4,7 +4,7 @@ FROM adoptopenjdk/openjdk11:alpine-slim
 # Метаданные автора
 LABEL authors="Honor"
 
-
+# Установка временной зоны
 RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
     echo "Europe/Moscow" >  /etc/timezone && \
