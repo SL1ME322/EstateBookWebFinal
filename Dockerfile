@@ -1,13 +1,10 @@
-# Используем образ с OpenJDK 11
-FROM adoptopenjdk/openjdk11:alpine-slim
+# Используем образ с JDK 17 на базе Alpine Linux
+FROM adoptopenjdk/openjdk17:alpine-slim
 
-# Метаданные автора
-LABEL authors="Honor"
-
-# Установка временной зоны
+# Установка временной зоны (опционально)
 RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
-    echo "Europe/Moscow" >  /etc/timezone && \
+    echo "Europe/Moscow" > /etc/timezone && \
     apk del tzdata
 
 # Создание директории приложения
