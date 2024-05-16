@@ -50,7 +50,7 @@ public class AuthController {
         user.setAverageMark(4f);
         user.setRegistrationDate(new Date());
         user.setStatus(Collections.singleton(StatusEnum.ONLINE));
-        user.setIsBanned(true);
+        user.setIsBanned(false);
 
 
         userService.createUser(user);
