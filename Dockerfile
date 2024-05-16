@@ -1,24 +1,13 @@
 # Стадия сборки
-FROM ubuntu:latest AS build
-
-RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk && \
-    apt-get clean
-
+FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 COPY . .
-
-# Запуск сборки проекта с использованием Gradle wrapper
-RUN ./gradlew bootJar --no-daemon
+RUN mvn clean package -DskipTests
 
 # Стадия запуска
-FROM openjdk:17-jdk-slim
-
+FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
-
-# Копирование собранного JAR файла из стадии сборки
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
