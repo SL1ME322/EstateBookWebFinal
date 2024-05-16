@@ -1,12 +1,15 @@
-# Стадия сборки
-FROM maven:3-eclipse-temurin-17 AS build
-WORKDIR /app
+FROM ubuntu:latest AS build
+
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
-RUN mvn clean package -DskipTests
 
-# Стадия запуска
-FROM eclipse-temurin:17-alpine
-WORKDIR /app
-COPY --from=build /app/EstateBookWeb-main/target/*.jar estatebookweb.jar
+RUN ./gradlew bootJar --no-daemon
 
-ENTRYPOINT ["java", "-jar", "estatebookweb.jar"]
+FROM openjdk:17-jdk-slim
+
+EXPOSE 8080
+
+COPY --from=build /build/libs/demo-1.jar app.jar
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
