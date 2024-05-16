@@ -23,5 +23,4 @@ public class FileModel {
 
     @Lob
     private byte[] content;
-
 }

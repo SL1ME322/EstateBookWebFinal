@@ -26,15 +26,15 @@ function showSelectedModels(event) {
         const reader = new FileReader();
 
         reader.onload = function(e) {
-            // Сохраняем содержимое файла в другую переменную
+
             const modelContent = e.target.result;
 
-            // Создаем элемент для отображения названия файла
+
             const fileNameElement = document.createElement('div');
             fileNameElement.classList.add('text-center');
             fileNameElement.innerText = file.name;
 
-            // Создаем кнопку для удаления
+
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '&times;';
             deleteButton.classList.add('absolute', 'top-0', 'right-0', 'text-red-500', 'p-1');
@@ -42,20 +42,20 @@ function showSelectedModels(event) {
                 thumbnail.remove();
             });
 
-            // Создаем обертку для элемента с названием и кнопкой удаления
+
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('text-center');
             thumbnail.appendChild(fileNameElement);
             thumbnail.appendChild(deleteButton);
 
-            // Добавляем созданный элемент на страницу
+
             modelList.appendChild(thumbnail);
 
-            // Добавляем содержимое файла в массив моделей
+
             modelContents.push(modelContent);
         };
 
-        // Читаем содержимое файла как текст
+
         reader.readAsText(file);
     }
 }
@@ -248,22 +248,22 @@ function addEstate(va){
     var modelThumbnails = modelList.querySelectorAll('div.text-center');
     console.log(modelThumbnails);
     modelInput.addEventListener('change', function(event) {
-        var files = event.target.files; // Получаем выбранные пользователем файлы
+        var files = event.target.files;
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             if (file.type === 'model/gltf+json' || file.type === 'model/gltf-binary' || file.name.endsWith('.glb') || file.name.endsWith('.gltf')) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
-                    // Добавляем содержимое файла в массив моделей
+
                     modelURLs.push(event.target.result);
                 };
-                // Читаем содержимое файла как Data URL
+
                 reader.readAsDataURL(file);
                 console.log( file )
             }
         }
     });
-    // Прох одимся по каждому элементу списка файлов и извлекаем путь к файлу
+
     thumbnails.forEach(function(thumbnail) {
         var image = thumbnail.querySelector('img');
         var video = thumbnail.querySelector('video');

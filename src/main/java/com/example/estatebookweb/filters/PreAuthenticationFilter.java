@@ -18,8 +18,6 @@ public class PreAuthenticationFilter extends OncePerRequestFilter  {
     @Autowired
     private UserService userService;
 
-
-
     @Override
     protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request,
                                     jakarta.servlet.http.HttpServletResponse response,

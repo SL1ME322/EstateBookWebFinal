@@ -56,17 +56,17 @@ public class EstateController {
 //        try {
 //            List<EstateModel> estates;
 //            if (estateType != null && minPrice != null && maxPrice != null) {
-//                // Если указаны все параметры фильтрации, применяем все фильтры
+//
 //                estates = estateRepository.findByEstateTypeAndPriceBetween(estateType, minPrice, maxPrice);
 //            } else if (estateType != null) {
-//                // Если указан только тип недвижимости, применяем только фильтр по типу недвижимости
+//
 //                estates = estateRepository.findByEstateType(estateType);
 //            } else if (city != null) {
-//                // Если указан только город, применяем фильтр по городу
+//
 //                estates = estateRepository.findByCity(city);
 //            }
 //                else   {
-//                // Если не указаны параметры фильтрации, просто получаем все объекты недвижимости
+//
 //                estates = estateRepository.findAll();
 //            }
 //            model.addAttribute("estates", estates);

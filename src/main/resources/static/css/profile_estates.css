@@ -1,7 +1,6 @@
-/* ===== =====  Poppins Google Font  ===== =====  */
+
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
-/* ===== =====>>  Universal Selector  <<===== =====  */
 * {
   padding: 0;
   margin: 0;
@@ -12,26 +11,26 @@
   font-family: "Poppins", sans-serif;
 }
  
-/* ===== =====>>  Body Font Size  <<===== =====  */
+
 html {
   font-size: 10px;
 }
 .container .userProfile .profile {
   padding-top: 10%;
   padding-bottom: 10%;
-    top: 10px; /* или любой другой желаемый отступ сверху */
+    top: 10px;
     z-index: 1;
-    background-color: #ffffff; /* убедитесь, что элемент остается выше других содержимого */
+    background-color: #ffffff;
   }
   
   .container .userProfile .userName {
     
-    top: 10px; /* или тот же отступ, что и у .profile */
-    z-index: 1; /* убедитесь, что элемент остается выше других содержимого */
+    top: 10px;
+    z-index: 1;
   }
-/* ===== =====>> Css Variables  <<===== =====  */
+
 :root {
-  /* =====>>  Font Color  <<===== */
+
   --f1-color: #fff;
   --f2-color: #000;
   --f3-color: rgba(0, 0, 0, 0.8);
@@ -39,7 +38,7 @@ html {
   --f5-color: #0099cc;
   --f6-color: #88cee6;
 
-  /* =====>>  Background Color  <<===== */
+
   --bg1-color: #fff;
   --bg2-color: #000;
   --bg3-color: #33ccff;
@@ -54,7 +53,7 @@ html {
   );
   --C-lg-bg: linear-gradient(45deg, #ff3399, #ff9933);
 
-  /* ===== =====>>  Font Size  <<===== =====  */
+
   --xxxl-fs: 2.2rem;
   --xxl-fs: 1.8rem;
   --xl-fs: 1.6rem;
@@ -63,7 +62,7 @@ html {
   --s-fs: 1.1rem;
   --xs-fs: 1rem;
 
-  /* =====>>  Margin  <<===== */
+
   --m-2-5: 2.5rem;
   --m-1-8: 1.8rem;
   --m-1-5: 1.5rem;
@@ -71,7 +70,7 @@ html {
   --m-0-5: 0.5rem;
   --m-0-3: 0.3rem;
 
-  /* =====>>  Padding  <<===== */
+
   --p-2-5: 2.5rem;
   --p-1-5: 1.5rem;
   --p-1-0: 1rem;
@@ -81,7 +80,7 @@ html {
   --p-0-3: 0.3rem;
 }
 
-/* ===== =====>>  Body Css  <<===== =====  */
+
 body {
   /* display: flex; */
   justify-content: center;
@@ -89,7 +88,7 @@ body {
   min-height: 100vh;
 }
 
-/* ===== =====>>  Body Main-Background Css  <<===== =====  */
+
 .main_bg {
   position: absolute;
   top: 0;
@@ -102,7 +101,7 @@ body {
   filter: blur(10px);
 }
 
-/* ===== =====>>  Main-Container Css  <<===== =====  */
+
 .container {
   position: relative;
   display: grid;
@@ -119,7 +118,7 @@ body {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 25px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== =====>>  Container Cards Grid-Area Css Start  <<===== =====  */
+
  
 
 .userProfile {
@@ -139,7 +138,7 @@ body {
   grid-area: timeline_about;
 }
 
-/* ===== =====>>  Container Cards Css  <<===== =====  */
+
 .container .card {
   background-color: #ffffff;
   backdrop-filter: blur(3rem);
@@ -148,7 +147,7 @@ body {
   padding: var(--p-1-5);
 }
 
-/* ===== =====>>  Container Header/Navbar Css  <<===== =====  */
+
  
 
 .container header .brandLogo {
@@ -167,7 +166,7 @@ body {
   margin-left: var(--m-0-5);
 }
 
-/* ===== =====>>  User Main-Profile Css Start  <<===== ===== */
+
 .container .userProfile {
  
   display: flex;
@@ -186,7 +185,7 @@ body {
   border-radius: 50%;
 }
 
-/* ===== =====>>  Work & Skills Css Start  <<===== ===== */
+
 .container .work_skills {
   padding: var(--p-1-5);
 }
@@ -250,7 +249,7 @@ body {
   color: rgba(0, 0, 0, 0.6);
   line-height: 1.6rem;
 }
-/* =====>>  Skills Bars Css  <<===== */
+
 .work_skills .skills ul li {
   position: relative;
   font-size: var(--m-fs);
@@ -289,7 +288,7 @@ body {
   }
 }
 
-/* ===== =====>>  User Details Css Start  <<===== ===== */
+
 .userDetails {
   position: relative;
   padding: var(--p-1-5) var(--p-2-5);
@@ -391,7 +390,7 @@ body {
   color: var(--f5-color);
 }
 
-/* ===== =====>>  Timeline & About Css Start  <<===== ===== */
+
 .timeline_about {
   padding: var(--p-2-5);
 }

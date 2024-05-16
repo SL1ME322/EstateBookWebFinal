@@ -253,16 +253,17 @@
 
             </div>
             <div class="flex flex-col  mt-8">
-                <label for="fileInput" class="mb-2">Добавьте изображения</label>
+                <label for="fileInput" class="w-16 mb-2">Добавьте изображения</label>
                 <label for="fileInput" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                     <span>Выберите файлы</span>
-                    <input   id="fileInput" name="fileInput" type="file" class="w-20 sr-only" accept="image/*,video/*" multiple>
+                    <input   id="fileInput" name="fileInput" type="file" class="w-16 sr-only" accept="image/*,video/*" multiple>
                 </label>
             </div>
             <div id="fileList" class="mt-4 grid grid-cols-3 gap-4"></div>
-            <div class="flex items-center justify-center mt-8">
+            <div class="flex flex-col mt-8">
+                <label for="modelInput" class="w-32 mb-2">Добавьте 3d модель</label>
                 <label for="modelInput" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                    <span>Добавить</span>
+                    <span>Выберите файл</span>
                     <input id="modelInput" name="modelInput" type="file" class="sr-only" accept=".glb,.gltf" multiple>
                 </label>
             </div>
@@ -287,33 +288,33 @@
                 <p class="text-lg">Описание</p>
                 <input class="rounded-lg" id="description_input">
             </div>
-            <div class="flex flex-col">
-                <div class="text-lg">
-                    Назначение
-                </div>
-                <div class="flex flex-wrap  gap-x-6 gap-y-4    w-full h-full">
+<!--            <div class="flex flex-col">-->
+<!--                <div class="text-lg">-->
+<!--                    Назначение-->
+<!--                </div>-->
+<!--                <div class="flex flex-wrap  gap-x-6 gap-y-4    w-full h-full">-->
 
-                    <button class="bg-slate-200 w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">
-                        A
-                    </button>
-                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300     ">
-                        A+
-                    </button>
-                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">
-                        B
-                    </button>
-                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">
-                        B+
-                    </button>
-                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300     ">
-                        C
-                    </button>
-                    <button class="bg-slate-200  w-32  h-12 rounded-full  hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">
-                        C+
-                    </button>
+<!--                    <button class="bg-slate-200 w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">-->
+<!--                        A-->
+<!--                    </button>-->
+<!--                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300     ">-->
+<!--                        A+-->
+<!--                    </button>-->
+<!--                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">-->
+<!--                        B-->
+<!--                    </button>-->
+<!--                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">-->
+<!--                        B+-->
+<!--                    </button>-->
+<!--                    <button class="bg-slate-200  w-32  h-12 rounded-full hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300     ">-->
+<!--                        C-->
+<!--                    </button>-->
+<!--                    <button class="bg-slate-200  w-32  h-12 rounded-full  hover:bg-blue-300 flex items-center justify-center   font-semibold   focus:outline-none focus:ring-2 focus:ring-blue-300    ">-->
+<!--                        C+-->
+<!--                    </button>-->
 
-                </div>
-            </div>
+<!--                </div>-->
+<!--            </div>-->
             <div class="flex flex-col">
                 <div class="text-lg"  >
                     Вход
@@ -365,8 +366,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    // Wait for the Yandex Maps API and DOM tree to be ready
-    // Wait for the Yandex Maps API and DOM tree to be ready
+
     var myPlacemark = null;
     var menuOpen = null;
     var globalAddress = "";
@@ -380,14 +380,13 @@
             searchControlProvider: 'yandex#search'
         });
 
-        // Создаем экземпляр класса ymaps.control.SearchControl
         var mySearchControl = new ymaps.control.SearchControl({
             options: {
                 noPlacemark: true
             }
         });
 
-        // Результаты поиска будем помещать в коллекцию.
+
         var mySearchResults = new ymaps.GeoObjectCollection(null, {
             hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
         });
@@ -395,26 +394,26 @@
         myMap.controls.add(mySearchControl);
         myMap.geoObjects.add(mySearchResults);
 
-        // При клике по найденному объекту метка становится красной.
+
         mySearchResults.events.add('click', function(e) {
             e.get('target').options.set('preset', 'islands#redIcon');
         });
 
-        // Выбранный результат помещаем в коллекцию.
+
 
         mySearchControl.events.add('resultselect', function(e) {
             var index = e.get('index');
             mySearchControl.getResult(index).then(function(res) {
-                // Удаляем предыдущую метку, если она существует
+
                 if (myPlacemark) {
                     myMap.geoObjects.remove(myPlacemark);
                 }
 
-                // Создаем новую метку
+
                 myPlacemark = createPlacemark(res.geometry.getCoordinates());
                 myMap.geoObjects.add(myPlacemark);
 
-                // Обновляем адрес на метке
+
                 getAddress(res.geometry.getCoordinates());
                 menuOpen =true;
             });
@@ -428,7 +427,7 @@
         myMap.events.add('click', function(e) {
             var coords = e.get('coords');
 
-            // Если метка уже создана – просто передвигаем ее.
+
             if (myPlacemark) {
                 myPlacemark.geometry.setCoordinates(coords);
             }
@@ -441,30 +440,30 @@
             menuOpen =true;
         });
 
-        // Создание метки.
+
         function createPlacemark(coords) {
-            // Создаем метку с заданными координатами и пустым значением для iconCaption
+
             var placemark = new ymaps.Placemark(coords, {}, {
                 preset: 'islands#violetDotIconWithCaption',
                 draggable: true
             });
 
-            // Определяем адрес по заданным координатам и обновляем значение iconCaption после получения адреса
+
             ymaps.geocode(coords).then(function(res) {
                 var firstGeoObject = res.geoObjects.get(0);
                 placemark.properties.set('iconCaption', firstGeoObject.getAddressLine());
             });
             placemark.events.add('dragend', function(e) {
-                var newCoords = e.get('target').geometry.getCoordinates(); // Получаем новые координаты метки после перемещения
+                var newCoords = e.get('target').geometry.getCoordinates();
                 getAddress(newCoords);
-                menuOpen =true;// Определяем новый адрес по новым координатам
-                myMap.setCenter(newCoords); // Центрируем карту по новым координатам
+                menuOpen =true;
+                myMap.setCenter(newCoords);
             });
 
             return placemark;
         }
 
-        // Определяем адрес по координатам (обратное геокодирование).
+
         function getAddress(coords) {
             myPlacemark.properties.set('iconCaption', 'поиск...');
             ymaps.geocode(coords).then(function(res) {
@@ -480,15 +479,15 @@
                 ].filter(Boolean).join(', ');
                 myPlacemark.properties
                     .set({
-                        // Формируем строку с данными об объекте.
+
                         iconCaption: [
-                            // Название населенного пункта или вышестоящее административно-территориальное образование.
+
                             firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
-                            // Получаем путь до топонима, если метод вернул null, запрашиваем наименование здания.
+
                             firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
                         ].filter(Boolean).join(', '),
 
-                        // В качестве контента балуна задаем строку с адресом объекта.
+
                         balloonContent: firstGeoObject.getAddressLine()
                     });
             });

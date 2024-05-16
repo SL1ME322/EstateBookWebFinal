@@ -1,23 +1,8 @@
-# Используем образ с JDK 17 на базе Alpine Linux
-FROM adoptopenjdk/openjdk17:alpine-slim
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Установка временной зоны (опционально)
-RUN apk add --no-cache tzdata && \
-    cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
-    echo "Europe/Moscow" > /etc/timezone && \
-    apk del tzdata
-
-# Создание директории приложения
-RUN mkdir /app
-
-# Копирование JAR файла в директорию приложения
-COPY EstateBookWeb-main/target/Estate_Book.jar /app/Estate_Book.jar
-
-# Указание рабочей директории
-WORKDIR /app
-
-# Определение порта, на котором будет работать ваше приложение
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
-
-# Команда для запуска приложения
-CMD ["java", "-jar", "Estate_Book.jar"]
+ENTRYPOINT ["java","-jar","demo.jar"]

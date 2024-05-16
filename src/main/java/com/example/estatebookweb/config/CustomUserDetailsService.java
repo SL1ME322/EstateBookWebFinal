@@ -1,7 +1,5 @@
 package com.example.estatebookweb.config;
 
-
-
 import com.example.estatebookweb.models.RoleEnum;
 import com.example.estatebookweb.models.UserModel;
 import com.example.estatebookweb.repositories.UserRepository;

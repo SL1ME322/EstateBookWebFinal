@@ -5,7 +5,7 @@ function showNewEstate() {
     newEstate.classList.toggle("hiddenSt");
     if (!newEstate.classList.contains("hiddenSt")) {
         newEstate.focus();
-        // После фокусировки элемента прокрутите окно, чтобы элемент был видимым
+
         //newEstate.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'   })
          window.scrollTo({ behavior: 'smooth', top: 100 }
  
@@ -21,7 +21,7 @@ function showAim() {
     aim.classList.toggle("hiddenSt");
     if (!aim.classList.contains("hiddenSt")) {
         aim.focus();
-        // После фокусировки элемента прокрутите окно, чтобы элемент был видимым
+
         //newEstate.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'   })
          window.scrollTo({ behavior: 'smooth', top: 270 }
  
@@ -36,7 +36,7 @@ function showPossiblePurpose() {
     purpose.classList.toggle("hiddenSt");
     if (!purpose.classList.contains("hiddenSt")) {
         purpose.focus();
-        // После фокусировки элемента прокрутите окно, чтобы элемент был видимым
+
         //newEstate.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'   })
          window.scrollTo({ behavior: 'smooth', top: 380 }
  
@@ -52,7 +52,7 @@ function showMap() {
     mapDiv.classList.toggle("hiddenSt");
     if (!mapDiv.classList.contains("hiddenSt")) {
         mapDiv.focus();
-        // После фокусировки элемента прокрутите окно, чтобы элемент был видимым
+
         //newEstate.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'   })
          window.scrollTo({ behavior: 'smooth', top: 650 }
  
@@ -68,7 +68,7 @@ function showObjInfo() {
         aboutObj.classList.remove("hiddenSt");
         if (!aboutObj.classList.contains("hiddenSt")) {
             aboutObj.focus();
-            // После фокусировки элемента прокрутите окно, чтобы элемент был видимым
+
             //newEstate.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest'   })
              window.scrollTo({ behavior: 'smooth', top: 700 }
      

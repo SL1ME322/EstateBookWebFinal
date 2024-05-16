@@ -24,6 +24,6 @@ public class NotificationController {
     @PostMapping("/createNotification")
     public ResponseEntity<String> createNotification(@RequestBody NotificationModel notificationModel) {
         notificationRepository.save(notificationModel);
-        return ResponseEntity.status(HttpStatus.OK).body("Объявление было успешно добавлено");
+        return ResponseEntity.status(HttpStatus.OK).body("Сообщение было успешно добавлено");
     }
 }
