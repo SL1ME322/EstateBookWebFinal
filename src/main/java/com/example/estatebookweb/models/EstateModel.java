@@ -16,22 +16,22 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "Estate")
-public class EstateModel {
+    @Entity
+    @Table(name = "Estate")
+    public class EstateModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_Estate")
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "ID_Estate")
+        private Long id;
 
-    //@NotBlank(message = "Ad Name cannot be blank")
-    @Column(name = "Ad_Name")
-    private String adName;
+        //@NotBlank(message = "Ad Name cannot be blank")
+        @Column(name = "Ad_Name",  columnDefinition = "NVARCHAR(255)")
+        private String adName;
 
-    //@NotBlank(message = "Location cannot be blank")
-    @Column(name = "Location")
-    private String location;
+        //@NotBlank(message = "Location cannot be blank")
+        @Column(name = "Location",  columnDefinition = "NVARCHAR(255)")
+        private String location;
 
     //@NotNull(message = "Price cannot be null")
     @Column(name = "Price")
@@ -54,7 +54,7 @@ public class EstateModel {
     private int houseArea;
 
    //@NotBlank(message = "Metro Station cannot be blank")
-    @Column(name = "Metro_Station")
+    @Column(name = "Metro_Station", columnDefinition = "NVARCHAR(255)")
     private String metroStation;
 
     //@NotBlank(message = "Train Station cannot be blank")
@@ -62,7 +62,7 @@ public class EstateModel {
     private String trainStation;
 
     //@NotBlank(message = "Description cannot be blank")
-    @Column(name = "Description")
+    @Column(name = "Description", columnDefinition = "NVARCHAR(255)")
     private String description;
 
     //@NotNull(message = "Ad Date cannot be null")
@@ -74,14 +74,14 @@ public class EstateModel {
     private Date buildingDate;
 
     //@NotBlank(message = "Status cannot be blank")
-    @Column(name = "Status")
+    @Column(name = "Status",  columnDefinition = "NVARCHAR(255)")
     private String status;
 
     //@NotNull(message = "Estate Rating cannot be null")
     @Column(name = "Estate_Rating")
     private Integer estateRating;
 
-    @Column(name = "Estate_Type")
+    @Column(name = "Estate_Type", columnDefinition = "NVARCHAR(255)")
     private String estateType;
 
 
@@ -89,7 +89,7 @@ public class EstateModel {
     @JoinColumn(name = "User_ID")
     private UserModel user;
 
-    @Column(name = "Renovation")
+    @Column(name = "Renovation", columnDefinition = "NVARCHAR(255)")
     private String renovation;
 
     @Column(name = "Room_Amount")
@@ -98,13 +98,13 @@ public class EstateModel {
     @Column(name = "Purpose")
     private String purpose;
 
-    @Column(name = "Possible_Purpose")
+    @Column(name = "Possible_Purpose", columnDefinition = "NVARCHAR(255)")
     private String possiblePurpose;
 
-    @Column(name = "Building_Type")
+    @Column(name = "Building_Type", columnDefinition = "NVARCHAR(255)")
     private String buildingType;
 
-    @Column(name = "Adress")
+    @Column(name = "Adress",columnDefinition = "NVARCHAR(255)")
     private String address;
 
     @Column(name = "Floor_Amount")
@@ -115,7 +115,7 @@ public class EstateModel {
 
     @Column(name = "Entrance")
     private String entrance;
-    @Column(name = "City")
+    @Column(name = "City", columnDefinition = "NVARCHAR(255)")
     private String city;
 
     @ElementCollection
