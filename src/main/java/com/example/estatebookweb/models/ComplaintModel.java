@@ -21,7 +21,7 @@ public class ComplaintModel {
     @ElementCollection(targetClass = UserComplaintEnum.class,  fetch = FetchType.EAGER)
     @CollectionTable(name = "Complaint_Type", joinColumns = @JoinColumn(name = "complaint_id"))
     @Enumerated(EnumType.STRING)
-
+    @Column(name = "type", columnDefinition = "NVARCHAR(255)")
     private Set<UserComplaintEnum> type;
 
     @Column(name = "Complaint_Description",  columnDefinition = "NVARCHAR(255)")
