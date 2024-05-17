@@ -95,7 +95,7 @@ import java.util.Set;
     @Column(name = "Room_Amount")
     private Integer roomAmount;
 
-    @Column(name = "Purpose")
+    @Column(name = "Purpose",  columnDefinition = "NVARCHAR(255)")
     private String purpose;
 
     @Column(name = "Possible_Purpose", columnDefinition = "NVARCHAR(255)")
@@ -113,7 +113,7 @@ import java.util.Set;
     @Column(name = "Floor")
     private Integer floor;
 
-    @Column(name = "Entrance")
+    @Column(name = "Entrance",  columnDefinition = "NVARCHAR(255)")
     private String entrance;
     @Column(name = "City", columnDefinition = "NVARCHAR(255)")
     private String city;

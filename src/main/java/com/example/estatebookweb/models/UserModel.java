@@ -20,13 +20,13 @@
         @Column(name = "ID_User")
         private Long id;
 
-        @Column(name = "Name", columnDefinition = "varchar(50) default 'Unknown'")
+        @Column(name = "Name",    columnDefinition = "NVARCHAR(255)"  )
         private String name;
 
-        @Column(name = "Surname", columnDefinition = "varchar(50) default 'Unknown'")
+        @Column(name = "Surname",  columnDefinition = "NVARCHAR(255)" )
         private String surname;
 
-        @Column(name = "Middle_Name", columnDefinition = "varchar(50) default 'Unknown'")
+        @Column(name = "Middle_Name",    columnDefinition = "NVARCHAR(255)")
         private String middleName;
 
         //@Column(name = "Login", nullable = false, unique = true)
@@ -39,19 +39,19 @@
         @Column(name = "Avatar", columnDefinition = "varchar(max) default 'default_avatar.jpg'")
         private String avatar;
 
-        @Column(name = "Phone", columnDefinition = "varchar(20) default 'Unknown'")
+        @Column(name = "Phone",     columnDefinition = "NVARCHAR(255)" )
         private String phone;
 
-        @Column(name = "Location", columnDefinition = "varchar(300) default 'Unknown'")
+        @Column(name = "Location", columnDefinition = "NVARCHAR(255)")
         private String location;
 
-        @Column(name = "Description", columnDefinition = "varchar(max) default 'No description provided'")
+        @Column(name = "Description", columnDefinition = "NVARCHAR(255)")
         private String description;
 
-        @Column(name = "Average_Mark", columnDefinition = "float default 0")
+        @Column(name = "Average_Mark" )
         private Float averageMark;
 
-        @Column(name = "Registration_Date", columnDefinition = "datetime default current_timestamp"  )
+        @Column(name = "Registration_Date"   )
         private Date registrationDate;
 
         @ElementCollection(targetClass = RoleEnum.class,  fetch = FetchType.EAGER)
