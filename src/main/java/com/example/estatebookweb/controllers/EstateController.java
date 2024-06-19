@@ -116,6 +116,29 @@ public class EstateController {
         }
 
     }
+    @GetMapping("/getEstatesOnMainPage2")
+    @ResponseBody
+    public List<EstateModel> getAllEstates2 (@RequestParam(value = "page", defaultValue = "1") int page,
+                                            @RequestParam(value = "items_per_range", defaultValue = "1") int itemsPerPage,
+                                            @RequestParam(value = "search", required  = false) String search) {
+        try {
+            List<EstateModel> estates;
+            if (search != null && !search.trim().isEmpty()){
+                Page<EstateModel> estatePage =  estateRepository.findByAdNameContaining(search, PageRequest.of(page - 1, itemsPerPage));
+                estates = estatePage.getContent();
+
+            }
+            else{
+                estates = estateRepository.findAll();
+            }
+            return estates;
+        } catch (Exception e) {
+
+            System.out.println("Exception:" + e);
+            return new ArrayList<>();
+        }
+
+    }
     /**
      * Метод для получения объявления по id
      *
