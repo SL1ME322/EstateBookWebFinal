@@ -22,7 +22,7 @@ public class ReviewModel {
     @Column(name = "Stars")
     private int stars;
 
-    @Column(name = "Review_Text")
+    @Column(name = "Review_Text",   columnDefinition = "NVARCHAR(255)")
     private String  review_text;
     //@NotNull(message = "Price cannot be null")
 

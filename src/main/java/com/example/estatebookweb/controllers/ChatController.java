@@ -47,6 +47,7 @@ public class ChatController {
         UserModel currentUser = userService.getCurrentUserLogin();
         if (currentUser != null) {
             model.addAttribute("currentUserLogin", currentUser.getLogin());
+
         }
         return "html/chat_one_test";
     }

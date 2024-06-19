@@ -45,8 +45,6 @@ public class mainController {
 
               estateList = estateRepository.findAll();
         }
-
-
         model.addAttribute("estates", estateList);
 
         return "html/mainPage";

@@ -28,7 +28,7 @@ function filterEstates() {
     // Отправляем AJAX запрос на сервер
     $.ajax({
         type: "GET",
-        url: "/estates/allEstates?city=" + encodeURIComponent(selectedCityDecoded),
+        url: "/estates/allEstatesByCity?city=" + encodeURIComponent(selectedCityDecoded),
 
         dataType: 'json',
         success: function(response) {

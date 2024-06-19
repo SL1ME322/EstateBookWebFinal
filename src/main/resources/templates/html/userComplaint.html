@@ -83,8 +83,8 @@
 
         <section class="bg-[#C1EBC0] h-[500px] w-6/12">
             <div class="text-center">
-                <p class="text-xl font-bold break-all" th:text="${complaint.getType()}"></p>
-                <p class="text-2xl px-8 font-semibold break-all"></p>
+                <p class="text-2xl font-bold break-all  " th:text="${complaint.getType()}"></p>
+                <p class="text-3xl px-8 font-semibold break-all  " th:text="${complaint.getDescription()}"></p>
 
             </div>
         </section>
@@ -123,10 +123,15 @@
         </section>
     </div>
     <div>
+        <input type="hidden" th:value="${complaint.getId()}" id="complaintIndex">
 
-        <button class="ml-24 mb-6 absolute inset-x-0 bottom-0 bg-[#f56358] h-32 w-1/6 rounded-2xl">Удалить жалобу
-        </button>
 
+
+
+
+        <a  th:href ="@{/moderator/moderPage}" >
+            <button class="ml-24 mb-6 absolute inset-x-0 bottom-0 bg-[#f56358] h-32 w-1/6 rounded-2xl" onclick="rejectComplaintPage(document.getElementById('complaintIndex').value)">Удалить жалобу</button>
+        </a>
 
         <button id="reviewComplaint" class=" mr-24 mb-6 absolute bottom-0 right-0 bg-[#78f584] h-32 w-1/6 rounded-2xl">
             Вынести вердикт
@@ -164,6 +169,8 @@
 </dialog>
 
 <script>
+
+
     var conclusionVar = null;
     var moderatorId = null;
     var urlParts = window.location.pathname.split('/');
@@ -214,7 +221,29 @@
         });
     }
 
+    function rejectComplaintPage(complaintId ) {
 
+        var complaintElement = document.getElementById('complaint-' + complaintId);
+        console.log(complaintElement)
+        // Send a DELETE request to your backend API to delete the complaint
+        fetch('/moderator/complaint/' + complaintId, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (response.ok) {
+
+
+                } else {
+
+                    return response.json().then(errorData => {
+                        console.error('Failed to delete complaint:', errorData);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
 
 </script>

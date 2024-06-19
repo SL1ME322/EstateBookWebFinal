@@ -7,6 +7,7 @@ import com.example.estatebookweb.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.slf4j.LoggerFactory;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Date;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("")
@@ -86,6 +88,13 @@ public class AuthController {
 
     @RequestMapping(value = "/logout",method = RequestMethod.GET)
     public String logout(HttpServletRequest response) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        UserModel user = userService.getUserByLogin(name) ;
+        if (user != null) {
+            user.setStatus(Collections.singleton(StatusEnum.OFFLINE));
+            userService.createUser(user);
+        }
         HttpSession session =  response.getSession();
         session.invalidate();
         SecurityContext securityContext = SecurityContextHolder.getContext();

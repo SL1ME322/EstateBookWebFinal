@@ -188,14 +188,54 @@ async function onMessageReceived(payload) {
 }
 
 function onLogout() {
-    stompClient.send("/app/user.disconnectUser",
-        {},
-        JSON.stringify({login : userLogin, status: 'OFFLINE'})
-    );
-    window.location.reload();
+    console.log("Выход из системы, отправка сообщения об отключении...");
+    if (stompClient && userLogin) {
+        stompClient.send("/app/user.disconnectUser", {}, JSON.stringify({
+            login: userLogin,
+            status: 'OFFLINE'
+        }));
+    }
+
+    // Отправка AJAX-запроса для обновления статуса пользователя в базе данных
+    $.ajax({
+        url: `/users/${userLogin}/status`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ status: 'OFFLINE' }),
+        success: function(response) {
+            console.log("Статус пользователя успешно обновлен в базе данных:", response);
+            // Проверить статус пользователя через задержку
+            setTimeout(checkUserStatusAndRedirect, 1000); // 1 секунда задержки перед проверкой
+        },
+        error: function(xhr, status, error) {
+            console.error("Ошибка при обновлении статуса пользователя:", error);
+        }
+    });
 }
 
+async function checkUserStatusAndRedirect() {
+    try {
+        const response = await fetch(`/api/users/${userLogin}`);
+        if (response.ok) {
+            const data = await response.json();
+            const status = data.status;
 
+            console.log(`Статус пользователя ${userLogin}: ${status}`);
+            if (status === 'OFFLINE') {
+                console.log("Пользователь успешно отключен. Перенаправление...");
+                window.location.href = '/login';
+            } else {
+                console.error("Пользователь все еще онлайн. Пожалуйста, попробуйте позже.");
+            }
+        } else if (response.status === 404) {
+            console.error(`Пользователь ${userLogin} не найден`);
+        } else {
+            console.error(`Ошибка при получении статуса пользователя ${userLogin}`);
+        }
+    } catch (error) {
+        console.error("Ошибка при проверке статуса пользователя:", error);
+    }
+}
 messageForm.addEventListener('submit', sendMessage, true);
 logout.addEventListener('click', onLogout, true);
 window.onbeforeunload = () => onLogout();

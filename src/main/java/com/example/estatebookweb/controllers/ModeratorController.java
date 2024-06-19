@@ -35,7 +35,15 @@ public class ModeratorController   {
         model.addAttribute("complaints", complaints);
         return "html/moderatorMainPage";
     }
-
+    @DeleteMapping("/complaint/{id}")
+    public ResponseEntity<?> deleteComplaint(@PathVariable Long id) {
+        try {
+            complaintRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     public ModeratorController(EstateRepository estateRepository, UserService userService, UserRepository userRepository, ComplaintRepository complaintRepository) {
         this.estateRepository = estateRepository;
         this.userService = userService;

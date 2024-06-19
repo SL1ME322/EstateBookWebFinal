@@ -19,6 +19,6 @@ public class ChatNotification {
     private String senderId;
     @Column(name = "Recipient_ID")
     private String recipientId;
-    @Column(name = "Content")
+    @Column(name = "Content", columnDefinition = "NVARCHAR(255)")
     private String content;
 }

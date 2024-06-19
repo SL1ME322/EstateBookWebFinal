@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 
@@ -41,13 +43,18 @@ public class UserService {
         userRepository.flush();
         return newUser;
     }
+    public UserModel findByLogin(String login) {
+        // Находим пользователя по логину
+        return userRepository.findByLogin(login);
+    }
+
     public void disconnect(UserModel user)
     {
         UserModel storedUser = userRepository.findByLogin(user.getName());
-        if (storedUser != null){
+
             storedUser.setStatus(Collections.singleton(StatusEnum.OFFLINE));
             userRepository.save(storedUser);
-        }
+
     }
     public List<UserModel> findConnectedUsers(){
         return userRepository.findAllByStatus(StatusEnum.ONLINE);
@@ -59,5 +66,17 @@ public class UserService {
             userRepository.save(user);
         }
     }
-
+    public boolean updateUserStatus(Long userId, Set<StatusEnum> status) {
+        Optional<UserModel> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            UserModel user = optionalUser.get();
+            user.setStatus(status);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
+    public void saveUser(UserModel user) {
+        userRepository.save(user);
+    }
 }
