@@ -92,7 +92,7 @@ public class AuthController {
 
         UserModel user = userService.getUserByLogin(name) ;
         if (user != null) {
-            user.setStatus(Collections.singleton(StatusEnum.OFFLINE));
+            user.setStatus(Collections.singleton(StatusEnum.ONLINE));
             userService.createUser(user);
         }
         HttpSession session =  response.getSession();
